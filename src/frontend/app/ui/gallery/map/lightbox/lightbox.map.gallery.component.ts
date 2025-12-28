@@ -424,12 +424,11 @@ constructor(
             // popup zu (optional)
             mkr.closePopup();
           
-            // Karte / Map-Lightbox schließen
-            this.ngZone.run(() => {
-              this.hide();              // <-- das ist der entscheidende Part
-              this.openInLightbox(p);   // danach navigieren
-            });
+            // Karte / Map-Lightbox schließen          
+            this.ngZone.run(() => this.openInLightbox(p));
+            mkr.closePopup();
           };
+        }); // <- WICHTIG: popupopen hier schließen
 
         mkr.setIcon(MarkerFactory.defIcon);
         // Setting photo icon
