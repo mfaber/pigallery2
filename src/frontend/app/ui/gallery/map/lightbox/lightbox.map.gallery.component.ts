@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, Input, OnChanges, OnDestroy, ViewChild, NgZone} from '@angular/core';
+import {Component, ElementRef, HostListener, Input, OnChanges, OnDestroy, ViewChild,} from '@angular/core';
 import {Router} from '@angular/router';
 import {PhotoDTO} from '../../../../../../common/entities/PhotoDTO';
 import {Dimension} from '../../../../model/IRenderable';
@@ -149,7 +149,6 @@ constructor(
   private durationPipe: DurationPipe,
   private router: Router,
   private queryService: QueryService,
-  private ngZone: NgZone,
 ) {
     this.setUpPathLayers();
     this.mapOptions.layers = [this.mapLayersControlOption.overlays.Photos];
@@ -421,17 +420,14 @@ constructor(
             return;
           }
         
-        btn.onclick = null;
-        btn.onclick = (ev) => {
-          ev.preventDefault();
-          ev.stopPropagation();
-        
-          this.ngZone.run(() => {
+          btn.onclick = null;
+          btn.onclick = (ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
             this.openInLightbox(p);
-          });
-        
-          mkr.closePopup();
-        };
+            mkr.closePopup();
+          };
+        });
 
         mkr.setIcon(MarkerFactory.defIcon);
         // Setting photo icon
