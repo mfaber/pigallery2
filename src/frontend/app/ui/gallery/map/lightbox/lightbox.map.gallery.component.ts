@@ -416,13 +416,20 @@ constructor(
           if (!btn) return;
         
           btn.onclick = null;
+          btn.onclick = null;
           btn.onclick = (ev) => {
             ev.preventDefault();
             ev.stopPropagation();
-            this.openInLightbox(p);
+          
+            // popup zu (optional)
             mkr.closePopup();
+          
+            // Karte / Map-Lightbox schließen
+            this.ngZone.run(() => {
+              this.hide();              // <-- das ist der entscheidende Part
+              this.openInLightbox(p);   // danach navigieren
+            });
           };
-        });
 
         mkr.setIcon(MarkerFactory.defIcon);
         // Setting photo icon
