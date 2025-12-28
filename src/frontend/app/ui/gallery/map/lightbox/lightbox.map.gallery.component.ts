@@ -421,8 +421,12 @@ constructor(
             ev.preventDefault();
             ev.stopPropagation();
         
-            this.ngZone.run(() => this.openInLightbox(p));
             mkr.closePopup();
+          
+            this.ngZone.run(() => {
+              this.hide();             // <-- Map-Lightbox schließen
+              this.openInLightbox(p);  // <-- Bild öffnen (Route ändern)
+            });
           };
         }); // <- WICHTIG: popupopen hier schließen
           
